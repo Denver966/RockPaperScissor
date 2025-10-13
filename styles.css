@@ -73,6 +73,7 @@ img {
     flex-direction: column;
   }
   #msg {
-    font-size: 20px;
+    font-size: 12px;
   }
 }
+
