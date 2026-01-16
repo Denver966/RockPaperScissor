@@ -1,6 +1,6 @@
 {
   "name": "Rock Paper Scissor",
-  "short_name": "RPS",
+  "short_name": "Rock Paper Scissor",
   "start_url": "/RockPaperScissor/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
