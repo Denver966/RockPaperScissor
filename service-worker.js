@@ -1,6 +1,8 @@
 // service-worker.js
 
 const CACHE_NAME = 'rock-paper-scissor-cache-v1';
+
+// Ye files cache karni hain (aapke project ke relative paths)
 const urlsToCache = [
   '/RockPaperScissor/',
   '/RockPaperScissor/index.html',
@@ -13,22 +15,33 @@ const urlsToCache = [
   '/RockPaperScissor/screenshots/4.jpeg'
 ];
 
-
-// Install event
+// Install event - caching files
 self.addEventListener('install', (event) => {
-  console.log('Service Worker installing...');
+  console.log('[ServiceWorker] Installing...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('Caching files');
+        console.log('[ServiceWorker] Caching app files...');
         return cache.addAll(urlsToCache);
       })
   );
 });
 
-// Activate event
+// Activate event - old caches clean karna
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker activating...');
+  console.log('[ServiceWorker] Activating...');
+  event.waitUntil(
+    caches.keys().then((keyList) => {
+      return Promise.all(
+        keyList.map((key) => {
+          if (key !== CACHE_NAME) {
+            console.log('[ServiceWorker] Removing old cache:', key);
+            return caches.delete(key);
+          }
+        })
+      );
+    })
+  );
 });
 
 // Fetch event - offline support
@@ -36,12 +49,17 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
-        // Cache hit - return response
+        // Agar cache hit hua
         if (response) {
           return response;
         }
-        // Fetch from network
-        return fetch(event.request);
+        // Network se fetch karo
+        return fetch(event.request).catch(() => {
+          // Agar page load (navigation) request hai aur network fail hua
+          if (event.request.mode === 'navigate') {
+            return caches.match('/RockPaperScissor/index.html');
+          }
+        });
       })
   );
 });
