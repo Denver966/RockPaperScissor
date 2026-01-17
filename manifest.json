@@ -18,22 +18,22 @@
   "screenshots": [
     {
       "src": "https://denver966.github.io/RockPaperScissor/screenshots/1.jpeg", 
-      "sizes": "750x900",
+      "sizes": "690x865",
       "type": "image/jpeg"
     },
     {
       "src": "https://denver966.github.io/RockPaperScissor/screenshots/2.jpeg",
-      "sizes": "750x900",
+      "sizes": "690x865",
       "type": "image/jpeg"
     },
     {
       "src": "https://denver966.github.io/RockPaperScissor/screenshots/3.jpeg",
-      "sizes": "750x900",
+      "sizes": "690x865",
       "type": "image/jpeg"
     },
     {
       "src": "https://denver966.github.io/RockPaperScissor/screenshots/4.jpeg",
-      "sizes": "750x900",
+      "sizes": "690x865",
       "type": "image/jpeg"
     }
   ]
