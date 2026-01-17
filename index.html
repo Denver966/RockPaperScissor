@@ -36,9 +36,9 @@
         <p id="msg">Play your move</p>
     </div>
     <script>
-  if ('serviceWorker' in navigator) {
+ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
+    navigator.serviceWorker.register('/RockPaperScissor/service-worker.js')
       .then((registration) => {
         console.log('Service Worker registered with scope:', registration.scope);
       })
@@ -53,5 +53,6 @@
 </body>
 
 </html>
+
 
 
