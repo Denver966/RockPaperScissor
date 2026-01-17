@@ -1,23 +1,45 @@
-const CACHE_NAME = "rps-cache-v1";
-const FILES_TO_CACHE = [
-  "/",
-  "/index.html",
-  "/style.css",
-  "/script.js"
+// service-worker.js
+
+const CACHE_NAME = 'rock-paper-scissor-cache-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/style.css',
+  '/script.js',
+  '/icons.jpeg',
+  '/screenshots/1.jpeg',
+  '/screenshots/2.jpeg',
+  '/screenshots/3.jpeg'
 ];
 
-// Install
-self.addEventListener("install", event => {
+// Install event
+self.addEventListener('install', (event) => {
+  console.log('Service Worker installing...');
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(FILES_TO_CACHE);
-    })
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        console.log('Caching files');
+        return cache.addAll(urlsToCache);
+      })
   );
 });
 
-// Fetch
-self.addEventListener("fetch", event => {
+// Activate event
+self.addEventListener('activate', (event) => {
+  console.log('Service Worker activating...');
+});
+
+// Fetch event - offline support
+self.addEventListener('fetch', (event) => {
   event.respondWith(
-    fetch(event.request).catch(() => caches.match(event.request))
+    caches.match(event.request)
+      .then((response) => {
+        // Cache hit - return response
+        if (response) {
+          return response;
+        }
+        // Fetch from network
+        return fetch(event.request);
+      })
   );
 });
