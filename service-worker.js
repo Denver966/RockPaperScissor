@@ -2,15 +2,17 @@
 
 const CACHE_NAME = 'rock-paper-scissor-cache-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/script.js',
-  '/icons.jpeg',
-  '/screenshots/1.jpeg',
-  '/screenshots/2.jpeg',
-  '/screenshots/3.jpeg'
+  '/RockPaperScissor/',
+  '/RockPaperScissor/index.html',
+  '/RockPaperScissor/style.css',
+  '/RockPaperScissor/script.js',
+  '/RockPaperScissor/icons.png',
+  '/RockPaperScissor/screenshots/1.jpeg',
+  '/RockPaperScissor/screenshots/2.jpeg',
+  '/RockPaperScissor/screenshots/3.jpeg',
+  '/RockPaperScissor/screenshots/4.jpeg'
 ];
+
 
 // Install event
 self.addEventListener('install', (event) => {
